@@ -1,8 +1,15 @@
-import { useState, useEffect } from "react";
 const initialState = {
-  tasks: [
-    { id: 1, note:'go to lunch' },
-    { id: 2, note:'go to shopping' },
+  notes: [
+    {
+      id: 1,
+      name: "khoi",
+      note: "go to lunch",
+    },
+    {
+      id: 2,
+      name: "khoi1",
+      note: "go to lunch1",
+    },
   ],
 };
 
@@ -11,24 +18,25 @@ export default (state = initialState, action) => {
     case "ADD":
       return {
         ...state,
-        tasks: [...state.tasks, action.payload],
+        notes: [...state.notes, action.payload],
       };
     case "DELETE":
       return {
         ...state,
-        tasks: state.tasks.filter((item) => item.id !== action.payload),
+        notes: state.notes.filter((note) => note.id !== action.payload),
       };
     case "UPDATE":
       return {
         ...state,
-        tasks: state.tasks.map((task) => {
-          if (task.id === action.payload.id) {
+        notes: state.notes.map((note) => {
+          if (note.id === action.payload.id) {
             return action.payload;
           } else {
-            return task;
+            return note;
           }
         }),
       };
+
     default:
       return state;
   }
